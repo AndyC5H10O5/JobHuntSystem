@@ -1,6 +1,7 @@
 package com.final_pro.jobhuntsystem.controller;
 
 import com.final_pro.jobhuntsystem.entity.User;
+import com.final_pro.jobhuntsystem.entity.adm_info;
 import com.final_pro.jobhuntsystem.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +18,14 @@ public class UserController {
     @GetMapping("/user")
     // http://localhost:8080/user
     public List query(){
-        List<User> list = userMapper.find();
+        List<adm_info> list = userMapper.selectList(null);
         System.out.println(list);
         return list;
     }
     @PostMapping("/user")
     // ApiFox: http://localhost:8080/user
-    public String save(User user){
-        int i = userMapper.insert(user);
+    public String save(adm_info adm){
+        int i = userMapper.insert(adm);
         if(i > 0)
             return "插入成功";
         else
