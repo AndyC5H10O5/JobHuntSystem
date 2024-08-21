@@ -1,12 +1,13 @@
 package com.final_pro.jobhuntsystem.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.final_pro.jobhuntsystem.entity.Job;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
-public interface JobMapper {
+public interface JobMapper extends BaseMapper<Job> {
     @Select("select * from job_info") // 查询所有工作
     List<Job> findJob();
 

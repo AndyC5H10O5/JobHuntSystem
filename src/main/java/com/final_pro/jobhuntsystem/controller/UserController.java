@@ -15,9 +15,9 @@ public class UserController {
     @Autowired // 关键注解：注入由Spring自动实例化的UserMapper
     private UserMapper userMapper;
 
-    @GetMapping("/user")
+    @GetMapping("/user") // MyBatisPlus自动实现”查询所有用户“的sql语句
     // http://localhost:8080/user
-    public List query(){
+    public List<adm_info> query(){
         List<adm_info> list = userMapper.selectList(null);
         System.out.println(list);
         return list;

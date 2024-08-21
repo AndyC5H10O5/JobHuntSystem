@@ -1,5 +1,6 @@
 package com.final_pro.jobhuntsystem.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.final_pro.jobhuntsystem.entity.Job;
 import com.final_pro.jobhuntsystem.entity.Student;
 import com.final_pro.jobhuntsystem.mapper.JobMapper;
@@ -16,7 +17,7 @@ public class JobHuntController {
     // 本地： http://localhost:8080/hello   (Tomcat默认:8080;可以在properties文件中修改server.port=80)
     // 本地： http://localhost:8080/hello?transParam=Lucy&age=23     (在？后面传递参数, &后面传递多个参数)
     @GetMapping("/hello") // 浏览器会发送Get请求访问此方法。
-    public String hello(String transParam, String age){
+    public String hello(String transParam, String age) {
         System.out.println(age);
         return "hello " + transParam + ", age: " + age;
     }
@@ -24,10 +25,30 @@ public class JobHuntController {
     @Autowired
     JobMapper jobMapper;
 
-    @GetMapping("/user/findAllJobAndStu") // 查询所有工作及其实习生
-    // http://localhost:8080/user/findAllJobAndStu
-    public List<Job> findAJaS(){
+    @GetMapping("/job/findAllJob") // 查询所有工作
+    // http://localhost:8080/job/findAllJob
+    public List<Job> findAllJob(){
+        return jobMapper.findJob();
+    }
+
+    @GetMapping("/job/findAllJobMBP") // MyBatisPlus：查询所有工作
+    // http://localhost:8080/job/findAllJobMBP
+    public List<Job> findAllJobMBP() {
+        return jobMapper.selectList(null);
+    }
+
+    @GetMapping("/job/findAllJobAndStu") // 查询所有工作及其实习生
+    // http://localhost:8080/job/findAllJobAndStu
+    public List<Job> findAJaS() {
         return jobMapper.selectAllUserAndOrders();
+    }
+
+    @GetMapping("/job/selectJobByMoney") // 使用MybatisPlus自动生成”条件查询“的sql语句
+    // http://localhost:8080/job/selectJobByMoney
+    public List<Job> selectJobByMoney() {
+        QueryWrapper<Job> queryWrapper = new QueryWrapper();
+        queryWrapper.ge("daily_salary", "150"); // 查询日薪大于等于150的工作
+        return jobMapper.selectList(queryWrapper);
     }
 
     @Autowired
@@ -35,7 +56,7 @@ public class JobHuntController {
 
     @GetMapping("/user/findAllStuAndJob") // 查询所有学生及其实习工作
     // http://localhost:8080/user/findAllStuAndJob
-    public List<Student> findASaJ(){
+    public List<Student> findASaJ() {
         return studentMapper.selectAllStuAndJob();
     }
 

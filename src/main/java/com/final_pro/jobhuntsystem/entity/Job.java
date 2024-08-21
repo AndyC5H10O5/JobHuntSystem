@@ -9,14 +9,15 @@ import java.util.List;
 public class Job {
     private int id;
     private String company;
-    private String job_name;
-    private int daily_salary;
-    private int work_time;
+    private String jobName; // 注意：Mybatis将”java的驼峰风格属性名“映射到”数据库表的下划线风格字段名“！！！！！！
+    private int dailySalary;
+    private int workTime;
 
     // 描述用户的所有订单
     @TableField(exist = false) // 告诉MybatisPlus这个字段在数据库中不存在（Mybatis自己写sql则无所谓）
     private List<Student> students; // 多表查询，一对多
     // Tips：”查询所有学生及其工作“时，返回结果的”job“里又会有”students“，值为null，可以不用理会
+
 
     public int getId() {
         return id;
@@ -34,28 +35,28 @@ public class Job {
         this.company = company;
     }
 
-    public String getJob_name() {
-        return job_name;
+    public String getJobName() {
+        return jobName;
     }
 
-    public void setJob_name(String job_name) {
-        this.job_name = job_name;
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
     }
 
-    public int getDaily_salary() {
-        return daily_salary;
+    public int getDailySalary() {
+        return dailySalary;
     }
 
-    public void setDaily_salary(int daily_salary) {
-        this.daily_salary = daily_salary;
+    public void setDailySalary(int dailySalary) {
+        this.dailySalary = dailySalary;
     }
 
-    public int getWork_time() {
-        return work_time;
+    public int getWorkTime() {
+        return workTime;
     }
 
-    public void setWork_time(int work_time) {
-        this.work_time = work_time;
+    public void setWorkTime(int workTime) {
+        this.workTime = workTime;
     }
 
     public List<Student> getStudents() {
@@ -66,15 +67,4 @@ public class Job {
         this.students = students;
     }
 
-    @Override
-    public String toString() {
-        return "Job{" +
-                "id=" + id +
-                ", company='" + company + '\'' +
-                ", job_name='" + job_name + '\'' +
-                ", daily_salary=" + daily_salary +
-                ", work_time=" + work_time +
-                ", students=" + students +
-                '}';
-    }
 }
