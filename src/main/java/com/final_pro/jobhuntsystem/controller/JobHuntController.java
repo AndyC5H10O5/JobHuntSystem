@@ -1,6 +1,8 @@
 package com.final_pro.jobhuntsystem.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.final_pro.jobhuntsystem.entity.Job;
 import com.final_pro.jobhuntsystem.entity.Student;
 import com.final_pro.jobhuntsystem.mapper.JobMapper;
@@ -49,6 +51,15 @@ public class JobHuntController {
         QueryWrapper<Job> queryWrapper = new QueryWrapper();
         queryWrapper.ge("daily_salary", "150"); // 查询日薪大于等于150的工作
         return jobMapper.selectList(queryWrapper);
+    }
+
+    @GetMapping("/job/findByPage") // MyBatisPlus分页查询
+    // http://localhost:8080/job/findByPage
+    public IPage findByPage(){
+        // 设置起始值及每页条数
+        Page<Job> page = new Page<>(0, 3);  // 页描述
+        IPage iPage = jobMapper.selectPage(page, null); // 结果集
+        return iPage; // 可以直接将IPage返回给前端
     }
 
     @Autowired
