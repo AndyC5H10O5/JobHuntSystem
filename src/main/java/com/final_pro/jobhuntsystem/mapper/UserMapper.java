@@ -1,13 +1,8 @@
 package com.final_pro.jobhuntsystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.final_pro.jobhuntsystem.entity.User;
 import com.final_pro.jobhuntsystem.entity.adm_info;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 @Mapper // 是一个mapper组件
 public interface UserMapper extends BaseMapper<adm_info> {

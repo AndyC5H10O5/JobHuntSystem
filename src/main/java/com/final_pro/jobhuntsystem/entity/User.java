@@ -2,6 +2,7 @@ package com.final_pro.jobhuntsystem.entity;
 
 public class User {
     private int id;
+    // @TableField("xxx_name") 字段注解
     private String name;
     private int age;
     private String password;
