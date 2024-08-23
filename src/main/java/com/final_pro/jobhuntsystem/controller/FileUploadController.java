@@ -11,7 +11,7 @@ import java.io.IOException;
 @RestController
 public class FileUploadController {
     @PostMapping("/upload")
-    // http://localhost:8080/upload
+    // http://localhost:8088/upload
     public String up(String nickname, MultipartFile photo, HttpServletRequest request) throws IOException{
         // 传递参数：用户的昵称、用户的头像、网络请求对象（Java EE提供的原始类，传参时不用管）
 

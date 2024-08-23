@@ -16,14 +16,14 @@ public class UserController {
     private UserMapper userMapper;
 
     @GetMapping("/user") // MyBatisPlus自动实现”查询所有用户“的sql语句
-    // http://localhost:8080/user
+    // http://localhost:8088/user
     public List<adm_info> query(){
         List<adm_info> list = userMapper.selectList(null);
         System.out.println(list);
         return list;
     }
     @PostMapping("/user")
-    // ApiFox: http://localhost:8080/user
+    // ApiFox: http://localhost:8088/user
     public String save(adm_info adm){
         int i = userMapper.insert(adm);
         if(i > 0)
