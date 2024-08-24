@@ -12,7 +12,7 @@ public class Student {
     private String department;
     private String major;
     private int grade;
-    private int GPA;
+    private float GPA;
     private String name;
     private int age;
     private int gender;
@@ -26,7 +26,6 @@ public class Student {
     public void setStuID(int stuID) {
         this.stuID = stuID;
     }
-
 
     public String getDepartment() {
         return department;
@@ -52,11 +51,11 @@ public class Student {
         this.grade = grade;
     }
 
-    public int getGPA() {
+    public float getGPA() {
         return GPA;
     }
 
-    public void setGPA(int GPA) {
+    public void setGPA(float GPA) {
         this.GPA = GPA;
     }
 

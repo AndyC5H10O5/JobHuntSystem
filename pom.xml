@@ -54,7 +54,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- 运行后访问 http://localhost:8080/swagger-ui/index.html，可查看动态生成的Api文档 -->
+        <!-- 运行后访问 http://localhost:8088/swagger-ui/index.html，可查看动态生成的Api文档 -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>

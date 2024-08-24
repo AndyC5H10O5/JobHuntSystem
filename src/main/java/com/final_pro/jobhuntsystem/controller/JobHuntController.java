@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController // 现在是控制器，可以接受浏览器请求了。
-@CrossOrigin // 允许该控制器被跨域访问
+@CrossOrigin // 最简单的跨域解决方法（允许该控制器被跨域访问）
 public class JobHuntController {
     // 云部署：http://www.XXX.com/ [path]
     // 本地： http://localhost:8088/hello   (Tomcat默认:8088;可以在properties文件中修改server.port=80)
@@ -66,6 +66,12 @@ public class JobHuntController {
 
     @Autowired
     StudentMapper studentMapper;
+
+    @GetMapping("/user/findAllStudents") // 查询所有学生
+    // http://localhost:8088/user/findAllStudents
+    public List<Student> findAllStudents() {
+        return studentMapper.selectAllStudents();
+    }
 
     @GetMapping("/user/findAllStuAndJob") // 查询所有学生及其实习工作
     // http://localhost:8088/user/findAllStuAndJob

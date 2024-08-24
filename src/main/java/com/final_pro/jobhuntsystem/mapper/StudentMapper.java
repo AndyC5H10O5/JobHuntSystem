@@ -8,6 +8,9 @@ import java.util.List;
 
 @Mapper
 public interface StudentMapper {
+    @Select("select * from stu_info")
+    List<Student> selectAllStudents();
+
     @Select("select * from stu_info where job = #{job}")
     List<Student> selectByJob(int job);
 
