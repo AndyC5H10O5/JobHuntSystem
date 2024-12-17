@@ -38,4 +38,7 @@ public interface StudentMapper {
 
     @Delete("delete from stu_info where stuID = #{stuID}")
     int delStudent(int stuID);
+
+    @Update("update stu_info SET name=#{name}, major=#{major}, GPA=#{GPA} where stuID=#{stuID}")
+    int updateStudent(Student student);
 }

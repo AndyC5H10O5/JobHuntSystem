@@ -95,10 +95,6 @@ public class JobHuntController {
     // http://localhost:8081/stu/deleteStudent?stuID=123
     public String getTest3(@RequestParam(value = "stuID") int stuID){
         // 将接收参数nickname绑定到方法参数name上（注意：使用此注解代表该参数必须被使用！否则无法访问到该方法；或添加required = false）
-        System.out.println("---------------");
-        System.out.println("post请求参数：");
-        System.out.println("stuID: " + stuID);
-        System.out.println("---------------");
         int i = studentMapper.delStudent(stuID);
         if(i > 0)
             return "删除成功";
@@ -108,14 +104,23 @@ public class JobHuntController {
 
     @PostMapping("/stu/addStudent")
     public String addStudent(Student student){
-        System.out.println("---------------");
-        System.out.println("post请求参数：");
-        System.out.println("name:" + student.getName() + " major:" + student.getMajor());
-        System.out.println("---------------");
+//        System.out.println("---------------");
+//        System.out.println("POST请求参数：");
+//        System.out.println("name:" + student.getName() + " major:" + student.getMajor());
+//        System.out.println("---------------");
         int i = studentMapper.addStudent(student);
         if(i > 0)
             return "添加成功";
         else
             return "添加失败";
+    }
+
+    @PutMapping("/stu/updateStudent")
+    public String updateStudent(Student student){
+        int i = studentMapper.updateStudent(student);
+        if(i > 0)
+            return "修改成功";
+        else
+            return "修改失败";
     }
 }
