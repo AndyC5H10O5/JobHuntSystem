@@ -1,4 +1,4 @@
-# 基于SpringBoot框架与Vue框架的本科生实习管理系统 - 后端
+# 基于SpringBoot框架与Vue框架的本科生实习管理系统-后端
 ## 项目介绍
 - 此项目使用现代JavaWeb技术，为综合项目的**后端**部分（[点此访问前端](https://github.com/AndyC5H10O5/JobHuntSystem-Face)）
 - **技术栈**：Java、SpringBoot、Mybatis、MybatisPlus、SQL、MySql、Jwt
@@ -15,7 +15,7 @@
 - [ ] 详细设计，重构数据库表
 - [ ] 堆叠增删改查功能，编写大量接口
 - [ ] 学生、企业、管理员3个角色界面初具雏形
-- [ ] 功能模块对应的接口完成半数
+- [ ] 功能模块对应的接口半数完成
 - [ ] 功能模块对应的接口基本完成
 - [ ] 系统整体测试
 - [ ] 追加创新特色功能

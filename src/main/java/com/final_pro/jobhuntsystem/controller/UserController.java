@@ -57,6 +57,7 @@ public class UserController {
     public String update(User user){
         return "更新用户";
     }
+
     @DeleteMapping("/user/{id}")
     public String deleteById(@PathVariable int id){
         System.out.println(id);

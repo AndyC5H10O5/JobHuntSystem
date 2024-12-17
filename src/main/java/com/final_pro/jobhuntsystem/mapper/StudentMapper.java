@@ -32,4 +32,10 @@ public interface StudentMapper {
             }
     )
     List<Student> selectAllStuAndJob();
+
+    @Insert("insert into stu_info (stuID, name, major, GPA) values (#{stuID}, #{name}, #{major}, #{GPA})")
+    int addStudent(Student student);
+
+    @Delete("delete from stu_info where stuID = #{stuID}")
+    int delStudent(int stuID);
 }

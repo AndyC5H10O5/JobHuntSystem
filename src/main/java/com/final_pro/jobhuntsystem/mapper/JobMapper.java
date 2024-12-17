@@ -3,6 +3,7 @@ package com.final_pro.jobhuntsystem.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.final_pro.jobhuntsystem.entity.Job;
 import org.apache.ibatis.annotations.*;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface JobMapper extends BaseMapper<Job> {
     @Select("select * from job_info where id = #{id}") // 查询指定id的工作
     List<Job> findJobById(int id);
 
-    @Insert("Insert into adm_info values (#{id}, #{name}, #{age}, #{password})")
+    @Insert("Insert into job_info (id, company, job_name, daily_salary, work_time) values (#{id}, #{company}, #{jobName}, #{dailySalary}, #{workTime})")
     int insert(Job job);
 
     /*
