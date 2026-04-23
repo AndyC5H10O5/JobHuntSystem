@@ -2,6 +2,7 @@ package com.final_pro.jobhuntsystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.final_pro.jobhuntsystem.entity.Job;
+import com.final_pro.jobhuntsystem.entity.Student;
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -11,6 +12,15 @@ import java.util.List;
 public interface JobMapper extends BaseMapper<Job> {
     @Select("select * from job_info") // 查询所有工作
     List<Job> findJob();
+
+    @Insert("insert into job_info (id, company, job_name, daily_salary, work_time) values (#{id}, #{company}, #{jobName}, #{dailySalary}, #{workTime})")
+    int addJob(Job job);
+
+    @Delete("delete from job_info where id = #{id}")
+    int delJob(int id);
+
+    @Update("update job_info SET company=#{company}, job_name=#{jobName}, daily_salary=#{dailySalary}, work_time=#{workTime} where id=#{id}")
+    int updateJob(Job job);
 
     @Select("select * from job_info where id = #{id}") // 查询指定id的工作
     List<Job> findJobById(int id);

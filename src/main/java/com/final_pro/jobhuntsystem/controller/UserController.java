@@ -1,7 +1,6 @@
 package com.final_pro.jobhuntsystem.controller;
 
 import com.final_pro.jobhuntsystem.entity.User;
-import com.final_pro.jobhuntsystem.entity.adm_info;
 import com.final_pro.jobhuntsystem.mapper.UserMapper;
 import com.final_pro.jobhuntsystem.utils.JwtUtils;
 import com.final_pro.jobhuntsystem.utils.Result;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 // 符合RESTful风格的写法：增POST、删DELETE、改PUT、查GET。
 
@@ -16,11 +16,24 @@ import java.util.List;
 //@RequestMapping("/user") // 控制器的同一前缀
 @CrossOrigin
 public class UserController {
+    @Autowired // 关键注解：注入由Spring自动实例化的UserMapper
+    private UserMapper userMapper;
+
     @PostMapping("/user/login") // 登录后获得Token
     // http://localhost:8088/user/login
     // json: {username: andy, password: 123}
     // 如果前端传递的数据是json格式，必须使用对象接收，同时需要添加@RequestBody
     public Result login(@RequestBody User user){
+        // 如果用户名不存在或密码不匹配
+        int id = user.getId();
+        String password = user.getPassword();
+        System.out.println(password);
+        System.out.println(userMapper.getTrue(id) + "!!!");
+
+        if (!Objects.equals(password, "123")) {
+            // 返回错误的登录状态
+            return Result.error();
+        }
         String token = JwtUtils.generateToken(user.getName());
         return Result.ok().data("token", token);
     }
@@ -34,19 +47,18 @@ public class UserController {
         return Result.ok().data("name", username).data("头像", url);
     }
 
-    @Autowired // 关键注解：注入由Spring自动实例化的UserMapper
-    private UserMapper userMapper;
+
 
     @GetMapping("/user") // MyBatisPlus自动实现”查询所有用户“的sql语句
     // http://localhost:8088/user
-    public List<adm_info> query(){
-        List<adm_info> list = userMapper.selectList(null);
+    public List<User> query(){
+        List<User> list = userMapper.selectList(null);
         System.out.println(list);
         return list;
     }
     @PostMapping("/user")
     // ApiFox: http://localhost:8088/user
-    public String save(adm_info adm){
+    public String save(User adm){
         int i = userMapper.insert(adm);
         if(i > 0)
             return "插入成功";

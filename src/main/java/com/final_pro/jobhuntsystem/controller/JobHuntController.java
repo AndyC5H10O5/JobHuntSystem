@@ -33,6 +33,39 @@ public class JobHuntController {
         return jobMapper.findJob();
     }
 
+    @DeleteMapping("/job/deleteJob")
+    // http://localhost:8081/stu/deleteStudent?stuID=123
+    public String delJob(@RequestParam(value = "id") int id){
+        // 将接收参数nickname绑定到方法参数name上（注意：使用此注解代表该参数必须被使用！否则无法访问到该方法；或添加required = false）
+        int i = jobMapper.delJob(id);
+        if(i > 0)
+            return "删除成功";
+        else
+            return "删除失败";
+    }
+
+    @PostMapping("/job/addJob")
+    public String addJob(Job job){
+//        System.out.println("---------------");
+//        System.out.println("POST请求参数：");
+//        System.out.println("name:" + student.getName() + " major:" + student.getMajor());
+//        System.out.println("---------------");
+        int i = jobMapper.addJob(job);
+        if(i > 0)
+            return "添加成功";
+        else
+            return "添加失败";
+    }
+
+    @PutMapping("/job/updateJob")
+    public String putJob(Job job){
+        int i = jobMapper.updateJob(job);
+        if(i > 0)
+            return "修改成功";
+        else
+            return "修改失败";
+    }
+
     @GetMapping("/job/findAllJobMBP") // MyBatisPlus：查询所有工作
     // http://localhost:8081/job/findAllJobMBP
     public List<Job> findAllJobMBP() {
@@ -49,7 +82,7 @@ public class JobHuntController {
     // http://localhost:8081/job/selectJobByMoney
     public List<Job> selectJobByMoney() {
         QueryWrapper<Job> queryWrapper = new QueryWrapper();
-        queryWrapper.ge("daily_salary", "150"); // 查询日薪大于等于150的工作
+        queryWrapper.ge("daily_salary", "200"); // 查询日薪大于等于150的工作
         return jobMapper.selectList(queryWrapper);
     }
 

@@ -1,5 +1,8 @@
 package com.final_pro.jobhuntsystem.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
+@TableName("user")
 public class User {
     private int id;
     // @TableField("xxx_name") 字段注解
